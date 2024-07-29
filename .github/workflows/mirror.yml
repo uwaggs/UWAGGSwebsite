@@ -15,6 +15,10 @@ jobs:
       with:
         fetch-depth: 0  # Fetch all history for all branches and tags
 
+    - name: Clone repo-a
+      run: |
+        git clone https://github.com/uwaggs/UWAGGSwebsite.git UWAGGSwebsite
+
     - name: Mirror to UWAGGSwebsite-com
       env:
         REPO_B_PAT: ${{ secrets.UWAGGS_WEBSITE_TOKEN }}
