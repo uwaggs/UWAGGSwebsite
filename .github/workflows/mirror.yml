@@ -19,7 +19,7 @@ jobs:
       env:
         REPO_B_PAT: ${{ secrets.UWAGGS_WEBSITE_TOKEN }}
       run: |
-        git clone https://github.com/your-org/UWAGGSwebsite-com.git
+        git clone https://github.com/uwaggs/UWAGGSwebsite-com.git
         cd UWAGGSwebsite-com
         
         # Remove all existing files in UWAGGSwebsite-com
