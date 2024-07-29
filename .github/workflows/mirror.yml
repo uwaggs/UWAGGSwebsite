@@ -22,11 +22,11 @@ jobs:
         git clone https://github.com/your-org/UWAGGSwebsite-com.git
         cd UWAGGSwebsite-com
         
-        # Remove all existing files in repo-b
+        # Remove all existing files in UWAGGSwebsite-com
         rm -rf ./*
         
-        # Copy files from repo-a to repo-b, excluding file.txt
-        cp -R ../repo-a/* ./
+        # Copy files from UWAGGSwebsite to UWAGGSwebsite-com, excluding CNAME
+        cp -R ../UWAGGSwebsite/* ./
         rm -f CNAME  # Ensure that CNAME is removed if it exists
 
         # make correct CNAME
@@ -37,4 +37,4 @@ jobs:
         git commit -m "Sync files from repo-a, excluding file.txt" || echo "No changes to commit"
         
         # Push changes to repo-b
-        git push https://${{ secrets.REPO_B_PAT }}@github.com/uwaggs/UWAGGSwebsite-com.git main --force
+        git push https://${{ secrets.UWAGGS_WEBSITE_TOKEN }}@github.com/uwaggs/UWAGGSwebsite-com.git main --force
