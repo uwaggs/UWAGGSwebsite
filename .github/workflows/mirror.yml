@@ -15,6 +15,11 @@ jobs:
       with:
         fetch-depth: 0  # Fetch all history for all branches and tags
 
+    - name: Set up Git
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
     - name: Clone repo-a
       run: |
         git clone https://github.com/uwaggs/UWAGGSwebsite.git UWAGGSwebsite
