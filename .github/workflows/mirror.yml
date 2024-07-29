@@ -19,8 +19,22 @@ jobs:
       env:
         REPO_B_PAT: ${{ secrets.UWAGGS_WEBSITE_TOKEN }}
       run: |
-        git clone --mirror https://github.com/uwaggs/UWAGGSwebsite-com.git
-        cd UWAGGSwebsite-com.git
-        git remote add UWAGGSwebsite https://github.com/uwaggs/UWAGGSwebsite.git
-        git fetch UWAGGSwebsite
-        git push --mirror https://${{ secrets.UWAGGS_WEBSITE_TOKEN }}@github.com/uwaggs/UWAGGSwebsite-com.git
+        git clone https://github.com/your-org/UWAGGSwebsite-com.git
+        cd UWAGGSwebsite-com
+        
+        # Remove all existing files in repo-b
+        rm -rf ./*
+        
+        # Copy files from repo-a to repo-b, excluding file.txt
+        cp -R ../repo-a/* ./
+        rm -f CNAME  # Ensure that CNAME is removed if it exists
+
+        # make correct CNAME
+        echo "www.uwaggs.com" > CNAME
+        
+        # Stage and commit changes
+        git add .
+        git commit -m "Sync files from repo-a, excluding file.txt" || echo "No changes to commit"
+        
+        # Push changes to repo-b
+        git push https://${{ secrets.REPO_B_PAT }}@github.com/uwaggs/UWAGGSwebsite-com.git main --force
